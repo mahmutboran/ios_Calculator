@@ -44,8 +44,8 @@ equal.addEventListener("click", () => {
     } else if (myArray.includes("÷")) {
         let num1 = Number(myArray.slice(0, myArray.indexOf("÷")).join(""))
         let num2 = Number(myArray.slice(myArray.indexOf("÷") + 1).join(""))
-        copyresult.innerHTML = num1 / num2
-        results = (num1 / num2)
+        copyresult.innerHTML = (num1 / num2).toFixed(8)
+        results = (num1 / num2).toFixed(8)
     } else if (myArray.includes("-")) {
         let num1 = Number(myArray.slice(0, myArray.indexOf("-")).join(""))
         let num2 = Number(myArray.slice(myArray.indexOf("-") + 1).join(""))
@@ -59,14 +59,17 @@ equal.addEventListener("click", () => {
     }
     result.innerHTML = ""
     myArray = [results]
+
+    
 })
 
 
-
 modulüs.addEventListener(("click"), () => {
-    let num1 = Number(myArray.slice(0, myArray.indexOf("+")).join(""))
-    copyresult.innerHTML = num1 / 100
-
+    let num1 = Number(myArray.slice(0, myArray.indexOf("%")).join(""))
+    results=(num1 / 100).toFixed(2)
+    myArray = [results]
+    copyresult.innerHTML = results
+    result.innerHTML = ""
 })
 clear.addEventListener("click", () => {
     myArray = []
