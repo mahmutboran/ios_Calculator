@@ -24,7 +24,13 @@ let content = document.getElementsByClassName("content")
 
 let myArray = []
 
+let _plus  = false
+plus.addEventListener("click", ()=> {_plus=true;});
 
+let _minus  = false
+minus.addEventListener("click", ()=> {_minus=true;});
+
+console.log(_plus)
 
 /* console.log(plus.clicked==true)
 console.log(plus.click==true)
@@ -42,20 +48,21 @@ Array.from(content).forEach(e => {
 
 
 equal.addEventListener("click", () => {
-    console.log(plus.clicked==false)
-    console.log(plus.click==false)
-    console.log(plus.onclick==false)
+    console.log(_plus)
+    console.log(_minus)
     console.log(myArray)
   
     if (copyresult.textContent != "" && result.textContent.slice(0, 1) != "x" && result.textContent.slice(0, 1) != "-" && result.textContent.slice(0, 1) != "+" && result.textContent.slice(0, 1) != "÷") {
+
         myArray = result.innerHTML.split("")
         result.innerHTML = ""
         copyresult.innerHTML = ""
-    }/* else if (result.textContent == "" && result.textContent.slice(0, 1) != "x" && result.textContent.slice(0, 1) != "-" && result.textContent.slice(0, 1) != "+" && result.textContent.slice(0, 1) != "÷") {
-        myArray = result.innerHTML.split("")
+    }else if (result.textContent != "" && (_plus || _minus)) {
+        console.log("çalışt")
+      /*   myArray = result.innerHTML.split("") */
         result.innerHTML = ""
         copyresult.innerHTML = ""
-    } */
+    }
 
     let results;
     if (myArray.includes("x")) {
@@ -74,17 +81,18 @@ equal.addEventListener("click", () => {
             results = (num1 / num2).toFixed(8)
         }
 
-    } else if (myArray.includes("-")) {
-        let num1 = Number(myArray.slice(0, myArray.indexOf("-")).join(""))
-        let num2 = Number(myArray.slice(myArray.indexOf("-") + 1).join(""))
-        copyresult.innerHTML = num1 - num2
-        results = (num1 - num2)
     } else if (myArray.includes("+")) {
         let num1 = Number(myArray.slice(0, myArray.indexOf("+")).join(""))
         let num2 = Number(myArray.slice(myArray.indexOf("+") + 1).join(""))
         copyresult.innerHTML = num1 + num2
         results = (num1 + num2)
-    }
+    }else if (myArray.includes("-")) {
+    
+        let num1 = Number(myArray.slice(0, myArray.indexOf("-")).join(""))
+        let num2 = Number(myArray.slice(myArray.indexOf("-") + 1).join(""))
+        copyresult.innerHTML = num1 - num2
+        results = (num1 - num2)
+    } 
     result.innerHTML = ""
     myArray = [results]
 })
